@@ -1,0 +1,26 @@
+jobs:
+- name: u16all-test
+  type: runSh
+  steps:
+    - TASK:
+        runtime:
+          options:
+            imageName: "drydock/u16all"
+            imageTag: master
+        script:
+          - psql --version
+          - java -jar /usr/local/selenium/selenium-server-standalone-3.8.1.jar --version
+          - sqlite3 --version
+          - mysql --version
+           - mongod --version
+           - /var/lib/neo4j/bin/neo4j version
+           - dpkg -s rabbitmq-server | grep Version
+           - redis-server --version
+           - elasticsearch --version
+           - memcached --version
+           - cassandra -v
+           - riak version
+           - service couchdb start
+           - sleep 5
+           - curl http://127.0.0.1:5984
+    
